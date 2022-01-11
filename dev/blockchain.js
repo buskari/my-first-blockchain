@@ -48,15 +48,18 @@ class Blockchain {
   }
 
   proofOfWork() {
+    const previousBlockHash = this.getLastBlock()['previousBlockHash']
+    const currentBLockData = JSON.stringify(this.pendingTransactions)
+    
     let nonce =  0
-    let hash = this.hashBlock(this.getLastBlock, this.transactions, nonce)
+    let hash = this.hashBlock(previousBlockHash, currentBLockData, nonce)
 
     while (hash.slice(0, 4) !== '0000') {
       nonce++
-      hash = this.hashBlock(this.getLastBlock, this.getLastBlock().transactions[0], nonce)
+      hash = this.hashBlock(previousBlockHash, currentBLockData, nonce)
     }
 
-    return hash
+    return nonce
   }
 }
 
