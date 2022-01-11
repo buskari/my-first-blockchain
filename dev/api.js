@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
+const Blockchain = require('./blockchain')
+const ethereum = new Blockchain()
+
+app.use(express.json())
 
 app.get('/blockchain', (req, res) => {
-  // ... return entire blockchain
+  res.send(ethereum)
 })
 
 app.post('/transaction', (req, res) => {
-  // ... create new transaction
+  // .. create new transaction
 })
 
 app.get('/mine', (req, res) => {
