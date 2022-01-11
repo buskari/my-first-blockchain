@@ -46,6 +46,18 @@ class Blockchain {
     const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBLockData)
     return sha256(dataAsString)
   }
+
+  proofOfWork() {
+    let nonce =  0
+    let hash = this.hashBlock(this.getLastBlock, this.transactions, nonce)
+
+    while (hash.slice(0, 4) !== '0000') {
+      nonce++
+      hash = this.hashBlock(this.getLastBlock, this.getLastBlock().transactions[0], nonce)
+    }
+
+    return hash
+  }
 }
 
 module.exports = Blockchain
