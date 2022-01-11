@@ -10,7 +10,12 @@ app.get('/blockchain', (req, res) => {
 })
 
 app.post('/transaction', (req, res) => {
-  // .. create new transaction
+  const { amount, sender, recipient } = req.body
+  const blockIndex = ethereum.createNewTransacation(amount, sender, recipient)
+  
+  res.json({
+    note: `Transaction will be added in block ${blockIndex}.`
+  })
 })
 
 app.get('/mine', (req, res) => {
