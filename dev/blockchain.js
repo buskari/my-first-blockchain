@@ -49,10 +49,7 @@ class Blockchain {
     return sha256(dataAsString)
   }
 
-  proofOfWork() {
-    const previousBlockHash = this.getLastBlock()['previousBlockHash']
-    const currentBLockData = JSON.stringify(this.pendingTransactions)
-    
+  proofOfWork(previousBlockHash, currentBLockData) {    
     let nonce =  0
     let hash = this.hashBlock(previousBlockHash, currentBLockData, nonce)
 
