@@ -11,8 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sha256": "^0.2.0",
     "express": "^4.17.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "sha256": "^0.2.0",
+    "uuid": "^8.3.2"
   }
 }
