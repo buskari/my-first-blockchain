@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const Blockchain = require('./blockchain')
 const { v4: uuidv4 } = require('uuid')
+const port = process.argv[2]
 
 const bitcoin = new Blockchain()
 const nodeAddress = uuidv4().split('-').join('')
