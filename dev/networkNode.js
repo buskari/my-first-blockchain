@@ -47,6 +47,6 @@ app.get('/mine', (req, res) => {
 })
 
 
-app.listen(3333, () => {
-  console.log('Listening on port 3333...')
+app.listen(port, () => {
+  console.log(`Listening on ${port} ...`)
 });
