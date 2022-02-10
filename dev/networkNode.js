@@ -46,6 +46,21 @@ app.get('/mine', (req, res) => {
   })
 })
 
+// register and broadcast a node to the network 
+app.post('/register-and-broadcast-node', function(req, res) {
+  const newNodeUrl = req.body.newNodeUrl;
+  
+})
+
+// register a node with the network (the other nodes accepts the new node)
+app.post('/register-node', function(req, res) {
+
+})
+
+// register multiple nodes at once
+app.post('/register-nodes-bulk', function(req, res) {
+
+})
 
 app.listen(port, () => {
   console.log(`Listening on ${port} ...`)
