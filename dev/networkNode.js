@@ -50,8 +50,9 @@ app.get('/mine', (req, res) => {
 // register and broadcast a node to the network 
 app.post('/register-and-broadcast-node', function(req, res) {
   const newNodeUrl = req.body.newNodeUrl;
+  const nodeNotPresent = bitcoin.networkNodes.indexOf(newNodeUrl === -1)
   
-  if (bitcoint.networkNodes.indexOf(newNodeUrl === -1)) {
+  if (nodeNotPresent) {
     bitcoin.networkNodes.push(newNodeUrl);
   }
 
@@ -80,7 +81,16 @@ app.post('/register-and-broadcast-node', function(req, res) {
 
 // register a node with the network (the other nodes accepts the new node)
 app.post('/register-node', function(req, res) {
+  const newNodeUrl = req.body.newNodeUrl;
+  const nodeNotPresent = bitcoin.networkNodes.indexOf(newNodeUrl === -1)
+  const notCurrentNode = newNodeUrl !== bitcoin.currentNodeUrl;
+  if (nodeNotPresent && notCurrentNode) {
+    bitcoin.networkNodes.push(newNodeUrl);
+  }
 
+  res.json({
+    message: 'New node register successfuly.'
+  })
 })
 
 // register multiple nodes at once
