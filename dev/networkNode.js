@@ -59,14 +59,21 @@ app.post('/register-and-broadcast-node', function(req, res) {
     const regNodesPromises = []
     
     regNodesPromises.push(
-      axios.post('register-node', {
+      axios.post(networkNodeUrl + 'register-node', {
         newNodeUrl
       })
     );
 
     Promise.all(regNodesPromises)
     .then(data => {
-      // use the data...
+      return axios.post('register-nodes-bulk', {
+        allNetworkNodes: [...bitcoin.networkNodes, bitcoin.currentNodeUrl]
+      })
+      .then(data => {
+        res.json({
+          message: 'New node registered with network successfully.'
+        })
+      })
     })
   })
 })
