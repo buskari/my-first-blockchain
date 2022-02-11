@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.25.0",
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "sha256": "^0.2.0",
