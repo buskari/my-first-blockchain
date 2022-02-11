@@ -3,6 +3,7 @@ const app = express()
 const Blockchain = require('./blockchain')
 const { v4: uuidv4 } = require('uuid')
 const port = process.argv[2]
+const axios = require('axios').default
 
 const bitcoin = new Blockchain()
 const nodeAddress = uuidv4().split('-').join('')
@@ -50,6 +51,24 @@ app.get('/mine', (req, res) => {
 app.post('/register-and-broadcast-node', function(req, res) {
   const newNodeUrl = req.body.newNodeUrl;
   
+  if (bitcoint.networkNodes.indexOf(newNodeUrl === -1)) {
+    bitcoin.networkNodes.push(newNodeUrl);
+  }
+
+  bitcoin.networkNodes.forEach(networkNodeUrl => {    
+    const regNodesPromises = []
+    
+    regNodesPromises.push(
+      axios.post('register-node', {
+        newNodeUrl
+      })
+    );
+
+    Promise.all(regNodesPromises)
+    .then(data => {
+      // use the data...
+    })
+  })
 })
 
 // register a node with the network (the other nodes accepts the new node)
